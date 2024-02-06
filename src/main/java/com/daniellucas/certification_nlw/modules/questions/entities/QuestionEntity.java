@@ -1,7 +1,10 @@
-package com.daniellucas.certification_nlw.modules.students.entities;
+package com.daniellucas.certification_nlw.modules.questions.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,16 +19,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "students")
-public class StudentEntity {
+@Entity(name = "questions")
+public class QuestionEntity {
   
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
-  @Column(unique = true, nullable = false)
-  private String email;
+  @Column(length = 50)
+  private String technology;
 
-  @OneToMany(mappedBy = "studentEntity")
-  private List<CertificationStudentEntity> certificationStudentEntity;
+  @Column
+  private String description;
+
+  @OneToMany(mappedBy = "questionEntity")
+  private List<AlternativesEntity> alternatives;
+
+  @CreationTimestamp
+  private LocalDateTime createdAt;
 }

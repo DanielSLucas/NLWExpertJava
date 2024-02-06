@@ -1,4 +1,4 @@
-package com.daniellucas.certification_nlw.modules.students.entities;
+package com.daniellucas.certification_nlw.modules.questions.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,36 +19,27 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "answers_certifications_students")
-public class AnswerCertificationsEntity {
+@Entity(name = "alternatives")
+public class AlternativesEntity {
   
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
-  @Column(name = "certification_id")
-  private UUID certificationId;
-
-  @ManyToOne()
-  @JoinColumn(name = "certification_id", insertable = false, updatable = false)
-  private CertificationStudentEntity certificationStudentEntity;
-
-  @Column(name = "student_id")
-  private UUID studentId;
-
-  @ManyToOne()
-  @JoinColumn(name = "student_id", insertable = false, updatable = false)
-  private StudentEntity studentEntity;
-
-  @Column(name = "question_id")
-  private UUID questionId;
-
-  @Column(name = "answer_id")
-  private UUID answerId;
+  @Column
+  private String description;
 
   @Column(name = "is_correct")
   private boolean isCorrect;
+  
+  @Column(name = "question_id")
+  private UUID questionId;
+
+  @ManyToOne
+  @JoinColumn(name = "question_id", insertable = false, updatable = false)
+  private QuestionEntity questionEntity;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
+
 }
