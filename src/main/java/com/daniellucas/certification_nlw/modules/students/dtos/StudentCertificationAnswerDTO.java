@@ -1,5 +1,7 @@
 package com.daniellucas.certification_nlw.modules.students.dtos;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,9 +9,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class VerifyHasCertificationDTO {
+@AllArgsConstructor
+public class StudentCertificationAnswerDTO {
   private String email;
   private String technology;
+  private List<QuestionAnswerDTO> questionAnswers;
 }
